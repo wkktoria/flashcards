@@ -58,6 +58,8 @@ void Session::Start() {
 }
 
 void Session::Study() {
+  flashcards_ = db_.GetAll();
+
   if (flashcards_.empty()) {
     std::cout << "No flashcard added. Add some and try again!\n";
     return;
@@ -90,7 +92,7 @@ void Session::Study() {
                 << std::chrono::duration_cast<std::chrono::seconds>(
                        std::chrono::steady_clock::now() - start)
                        .count()
-                << "seconds\n";
+                << " seconds\n";
       break;
     }
 
