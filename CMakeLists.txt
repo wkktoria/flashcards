@@ -16,7 +16,7 @@ if (NOT SQLiteCpp_FOUND)
     FetchContent_MakeAvailable(SQLiteCpp)
 endif()
 
-set(SOURCE_FILES src/main.cc src/flashcard.cc src/db.cc)
+set(SOURCE_FILES src/main.cc src/flashcard.cc src/db.cc src/session.cc)
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 target_include_directories(${PROJECT_NAME} PRIVATE include)

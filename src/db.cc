@@ -4,6 +4,7 @@
 #include <SQLiteCpp/Statement.h>
 #include <exception>
 #include <iostream>
+#include <vector>
 
 Db::Db()
     : db_(SQLite::Database("./flashcards.db",
@@ -62,4 +63,23 @@ bool Db::IsEmpty() {
   }
 
   return size == 0;
+}
+
+std::vector<Flashcard> Db::GetAll() {
+  std::vector<Flashcard> flashcards{};
+
+  try {
+    SQLite::Statement query(db_, "SELECT front, back FROM flashcards");
+
+    while (query.executeStep()) {
+      Flashcard flashcard(query.getColumn("front").getString(),
+                          query.getColumn("back").getString());
+
+      flashcards.push_back(flashcard);
+    }
+  } catch (std::exception &e) {
+    std::cout << e.what() << '\n';
+  }
+
+  return flashcards;
 }

@@ -3,6 +3,7 @@
 #include "flashcard.h"
 #include <SQLiteCpp/Database.h>
 #include <SQLiteCpp/SQLiteCpp.h>
+#include <vector>
 
 class Db {
 public:
@@ -11,6 +12,7 @@ public:
 
   void Add(const Flashcard &flashcard);
   void Show();
+  std::vector<Flashcard> GetAll();
 
 private:
   bool IsEmpty();
